@@ -16,11 +16,14 @@ export default new Vuex.Store({
     },
 
     REMOVE_VALUE(state, payload) {
-      if(state.carrinho === 0.00) {
-        alert('O carrinho não pode ficar negativo')
+      let value = (state.carrinho - payload);
+
+      if(value < 0.00) {
+        return false;
       } else {
-        state.carrinho = (state.carrinho - payload)
+        state.carrinho = value;
       }
+
     }
 
   },
