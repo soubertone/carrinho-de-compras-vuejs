@@ -21,7 +21,6 @@ export default {
 
 <style>
 * {
-  background: #2c3e50;
   margin: 0px;
   padding: 0px;
   scroll-behavior: auto;
@@ -33,10 +32,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
 }
 
 #nav a.router-link-exact-active {
