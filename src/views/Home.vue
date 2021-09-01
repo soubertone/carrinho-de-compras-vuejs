@@ -10,15 +10,16 @@
                 </div>
 
                 <div class="col-12 px-4 mb-5">
+
+                    <div :class="transaction" v-if="!data">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <p class="text-uppercase"> Buscando produtos... </p>
+                    </div>
+
                     <div class="row">
-                        <Produto product="Produto 1" price="19.99"/>
-                        <Produto product="Produto 2" price="22.99"/>
-                        <Produto product="Produto 3" price="27.99"/>
-                        <Produto product="Produto 4" price="32.99"/>
-                        <Produto product="Produto 5" price="64.99"/>
-                        <Produto product="Produto 6" price="72.99"/>
-                        <Produto product="Produto 7" price="58.99"/>
-                        <Produto product="Produto 8" price="99.99"/>
+                        <Produto v-for="product in data" :key="product.id" :product="product.name" :price="product.price"/>
                     </div>
                 </div>
 
@@ -46,6 +47,28 @@ export default {
       Footer,
   },
 
+  data() {
+      return {
+          data: null,
+          transaction: false,
+      }
+  },
+
+  mounted() {
+
+      setTimeout(() => {
+          this.$store.dispatch("getProducts")
+            .then(res => {
+                this.data = res 
+                this.transaction = true
+            })
+            .catch(err => {
+                console.log("Error: "+err)
+            })
+      }, 2000);
+
+  },
+
   methods: {
 
     add(value) {
@@ -68,4 +91,10 @@ export default {
             font-size: 25px;
         }   
     }
+
+    .transaction {
+        opacity: 0;
+        transition-duration: 1s;
+    }
+
 </style>
