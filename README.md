@@ -11,6 +11,12 @@ Este repositório contém meu projeto pessoal que consiste em um carrinho de com
 Primeiro você precisará baixar alguns pacotes e dependencias para rodar o projeto.
   - NPM
   - Node
+
+#### API start
+> json-server --watch db.json
+
+#### APP start
+> npm run serve
  
 ### Estrutura de pastas
 
