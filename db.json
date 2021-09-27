@@ -1,0 +1,46 @@
+{
+    "products" : {
+        "data": [
+            {
+    
+                "id": 1,
+                "name": "Uva",
+                "description": "produto teste 01",
+                "price": 2.5,
+                "created_at": null,
+                "updated_at": null
+            
+            },
+            {
+            
+                "id": 2,
+                "name": "Maçã",
+                "description": "produto de teste 02",
+                "price": 4.25,
+                "created_at": null,
+                "updated_at": null
+            
+            },
+            {
+            
+                "id": 3,
+                "name": "Melancia",
+                "description": "produto teste 03",
+                "price": 10,
+                "created_at": null,
+                "updated_at": null
+            
+            },
+            {
+            
+                "id": 4,
+                "name": "Pêra",
+                "description": "produto de teste 04",
+                "price": 2.5,
+                "created_at": null,
+                "updated_at": null
+            
+            }
+        ]
+    }
+}

@@ -12,9 +12,9 @@ const store = {
     getProducts() {
 
       return new Promise( (resolve, reject) => {
-        axios.get("http://localhost/api/produtos")
+        axios.get("http://localhost:3000/products")
           .then(response => {
-            resolve(response.data.data.data)
+            resolve(response.data.data)
           })
           .catch(err => {
             reject(err)
