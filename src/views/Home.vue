@@ -1,8 +1,7 @@
 <template>
     <div>
-        <NavBar />
-        <div class="container-fluid mt-5">
-            <div class="row d-flex justify-content-center bg-light">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-center">
                 <div class="col-6 py-2">
                     <p id="title-pag" class="h1 text-uppercase text-center bg-light shadow">
                         Carrinho de compras
@@ -19,12 +18,8 @@
                     </div>
 
                     <div class="row">
-                        <Produto v-for="product in data" :key="product.id" :product="product.name" :price="product.price"/>
+                        <Produto v-for="product in data" :key="product.id" :id="product.id" :product="product.name" :price="product.price"/>
                     </div>
-                </div>
-
-                <div class="col-12 pt-0" style="background: #ffffff;">
-                    <Footer />
                 </div>
             </div>
         </div>
@@ -34,17 +29,13 @@
 </template>
 
 <script>
-import NavBar from "../components/Navbar.vue";
 import Produto from "../components/Produto.vue";
-import Footer from "../components/Footer.vue"
 
 export default {
   name: 'Home',
 
   components: {
       Produto,
-      NavBar,
-      Footer,
   },
 
   data() {
@@ -54,7 +45,7 @@ export default {
       }
   },
 
-  mounted() {
+  created() {
 
       setTimeout(() => {
           this.$store.dispatch("getProducts")
@@ -65,21 +56,7 @@ export default {
             .catch(err => {
                 console.log("Error: "+err)
             })
-      }, 2000);
-
-  },
-
-  methods: {
-
-    add(value) {
-      this.$store.commit('ADD_VALUE', value)
-    },
-
-    remove(value) {
-      if(!this.$store.commit('REMOVE_VALUE', value)) {
-        console.log('Carrinho com valor negativo!');
-      }
-    }
+      }, 500);
 
   },
 }

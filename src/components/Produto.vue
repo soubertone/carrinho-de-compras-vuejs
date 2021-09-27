@@ -1,6 +1,6 @@
 <template>
     
-    <div class="col-12 col-md-3 mt-3 p-3 d-flex justify-content-center">
+    <div class="col-12 col-md-3 mt-3 p-3 d-flex justify-content-center bg-light shadow">
         <div class="card">
             <div class="card-header text-nowrap text-center">
                 <h3>{{ product }}</h3>
@@ -11,7 +11,7 @@
             </div>
 
             <div class="card-footer text-left border rounded-0 shadow-sm">
-                <form @submit.prevent="addValue(product, price, quantity)">
+                <form @submit.prevent="addValue(id, product, price, quantity)">
                     <div class="form-row">
 
                         <div class="col-10 col-md-6 text-md-left" style="margin-right: 0px;">
@@ -36,7 +36,7 @@
                                 type="text" 
                                 class="form-control lead bg-transparent border border-light text-left" 
                                 style="font-size: 20px; font-weight: bold" 
-                                :value="'R$ '+price"
+                                :value="'R$ '+price.toFixed(2).replace('.', ',')"
                             />
                         </div>
 
@@ -52,34 +52,21 @@
 <script>
 export default {
 
-    props: {
-        product: {
-            type: String
-        },
-        price: {
-            type: Number
-        }
-    },
+    props: ["id", "product", "price"],
 
     data() {
         return {
             quantity: 1,
-            data_product: {}
         }
     },
 
     methods: {
 
-        addValue(product, price, quantity) {
+        addValue(id, product, price, quantity) {   
 
-            this.data_product.product = product;
-            this.data_product.price = price;
-            this.data_product.quantity = quantity;
-
+            this.$store.commit("ADD_PRODUCT", {id, product, price, quantity});
             this.quantity = 1;
-
-            this.$store.commit("ADD_VALUE", this.data_product);
-        }
+        },
 
     }
     

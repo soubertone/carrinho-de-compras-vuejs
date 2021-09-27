@@ -5,7 +5,7 @@ import axios from 'axios';
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = {
 
   actions: {
 
@@ -32,22 +32,32 @@ export default new Vuex.Store({
 
   mutations: {
 
-    ADD_VALUE(state, payload) {
-      state.items_carrinho.push(payload);
-      state.value_carrinho += (payload.price * payload.quantity);
+    ADD_PRODUCT(state, {id, product, quantity, price}) {
+      var i = null;
+      if(state.items_carrinho.length > 0) {
+        
+        for (let index = 0; index < state.items_carrinho.length; index++) {
+          const element = state.items_carrinho[index];
+          if(element.id === id) {
+            i=true;
+            state.items_carrinho[index].quantity += parseInt(quantity);
+            break;
+          }
+        }
+
+      }
+
+      if(!i) state.items_carrinho.push({id, product, quantity, price});
+      state.value_carrinho += (price * parseFloat(quantity));
     },
 
-    // REMOVE_VALUE(state, payload) {
-    //   let value = (state.carrinho - payload);
+    CLEAN_CART(state) {
+      state.items_carrinho = [];
+      state.value_carrinho = 0.00;
+    },
 
-    //   if(value < 0.00) {
-    //     return false;
-    //   } else {
-    //     state.carrinho = value;
-    //   }
+  }
 
-    // }
+}
 
-  },
-
-})
+export default new Vuex.Store(store)
