@@ -11,7 +11,7 @@ Este repositório contém meu projeto pessoal que consiste em um carrinho de com
 Primeiro você precisará baixar alguns pacotes e dependencias para rodar o projeto.
   - NPM
   - Node
-  - 
+ 
 ### Estrutura de pastas
 
 
